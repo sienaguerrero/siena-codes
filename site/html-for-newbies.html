@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HTML for Newbies · siena.codes</title>
+<meta name="description" content="How the siena.codes portal is made, with code you can copy.">
+<link rel="canonical" href="https://siena.codes/html-for-newbies.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#lessons">Skip to the lessons</a>
+
+<div class="page">
+  <header class="masthead">
+    <div class="logo-row">
+      <p class="logo"><a href="/"><span class="spark" aria-hidden="true">&#10022;</span>siena<span class="dot">.</span>codes<span class="spark s2" aria-hidden="true">&#10023;</span></a></p>
+      <p class="tagline">your portal to the <b>siena.codes</b> web</p>
+    </div>
+
+    <nav class="tabs" aria-label="Portal">
+      <a href="/#directory" class="tab">Directory</a>
+      <a href="/#whatsnew" class="tab">What's New</a>
+      <a href="/#webring" class="tab">Webring</a>
+      <a href="/#webmaster" class="tab">Webmaster</a>
+      <a href="html-for-newbies.html" class="tab on" aria-current="page">HTML for Newbies</a>
+      <a href="https://sienaguerrero.com" class="tab">sienaguerrero.com</a>
+    </nav>
+  </header>
+
+  <div class="layout learn">
+    <aside class="col left">
+      <section class="box" aria-labelledby="toc-h">
+        <h2 class="bar" id="toc-h">Lessons</h2>
+        <ol class="toc">
+          <li><a href="#view-source">View Source</a></li>
+          <li><a href="#bevels">Beveled buttons</a></li>
+          <li><a href="#title-bars">Title bars</a></li>
+          <li><a href="#badges">88x31 buttons</a></li>
+          <li><a href="#stars">Starry background</a></li>
+          <li><a href="#chrome">Chrome logo</a></li>
+          <li><a href="#ticker">Scrolling ticker</a></li>
+          <li><a href="#blink">Blinking "new!"</a></li>
+          <li><a href="#pixels">Pixel art</a></li>
+          <li><a href="#counter">Hit counter</a></li>
+          <li><a href="#kind">Be kind to visitors</a></li>
+        </ol>
+      </section>
+    </aside>
+
+    <main class="col mid" id="lessons">
+      <section class="box intro" aria-labelledby="intro-h">
+        <h1 class="bar" id="intro-h">HTML for Newbies</h1>
+        <p>Every trick on the <a href="/">home page</a> is plain HTML and CSS, with nothing to install or build. Each lesson below shows the effect, then the code that makes it. Copy anything you like.</p>
+      </section>
+
+      <section class="box lesson" id="view-source" aria-labelledby="l1">
+        <h2 class="bar" id="l1">1. View Source</h2>
+        <p>This is how I learned. Right-click any page and pick <b>View Page Source</b>, or press <kbd>Ctrl</kbd>+<kbd>U</kbd> (<kbd>&#8984;</kbd>+<kbd>Option</kbd>+<kbd>U</kbd> on a Mac). You'll see the exact files this site sends you: <code>index.html</code>, <code>style.css</code>, and <code>portal.js</code>. There's a surprise near the top of the <a href="/">home page</a>'s source.</p>
+      </section>
+
+      <section class="box lesson" id="bevels" aria-labelledby="l2">
+        <h2 class="bar" id="l2">2. Beveled buttons</h2>
+        <p>A bevel is just four border colors. Light on the top and left, dark on the bottom and right, so the button looks lit from the top left. Swap them while it's pressed and it sinks in.</p>
+        <div class="demo"><button type="button" class="btn">Press me</button></div>
+<pre><code>.btn {
+  background: linear-gradient(180deg, #ffffff, #d9dde6);
+  border: 2px solid;
+  border-color: #ffffff #8a91a3 #8a91a3 #ffffff;
+}
+.btn:active {
+  border-color: #8a91a3 #ffffff #ffffff #8a91a3;
+}</code></pre>
+        <p class="small">The four colors go top, right, bottom, left, clockwise from noon.</p>
+      </section>
+
+      <section class="box lesson" id="title-bars" aria-labelledby="l3">
+        <h2 class="bar" id="l3">3. Title bars</h2>
+        <p>Every box on the portal has a window-style title bar. It's a heading with a sideways gradient behind it and a tiny shadow under the white text.</p>
+        <div class="demo"><p class="bar demo-bar">My Cool Box</p></div>
+<pre><code>.bar {
+  color: #fff;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, .35);
+  background: linear-gradient(90deg, #05506e, #0a86a8 70%, #22bfd8);
+}</code></pre>
+      </section>
+
+      <section class="box lesson" id="badges" aria-labelledby="l4">
+        <h2 class="bar" id="l4">4. 88x31 buttons</h2>
+        <p>The tiny badges are always 88 pixels wide and 31 tall. People traded them to link to each other's sites. These ones are drawn with CSS instead of images, so the patterns come from gradients.</p>
+        <div class="demo badges">
+          <span class="b88 b-quilt">quarterinch<br><b>.siena.codes</b></span>
+          <span class="b88 b-groove">groover<br><b>.siena.codes</b></span>
+          <span class="b88 b-glitter">blinkie<br><b>.siena.codes</b></span>
+        </div>
+        <p>The checkerboard is one <code>conic-gradient</code> split into four quarters, tiled every 15 pixels. The white <code>text-shadow</code> makes the words readable over the pattern.</p>
+<pre><code>.b88 {
+  display: block;
+  width: 88px;
+  height: 31px;
+  font: 9px/11px Verdana, sans-serif;
+  border: 1px solid #000;
+}
+.b-quilt {
+  background:
+    conic-gradient(#f8d98c 0 25%, #a8d4e6 0 50%,
+                   #f8d98c 0 75%, #a8d4e6 0) 0 0 / 15px 15px;
+  text-shadow: 0 0 3px #fff, 0 0 3px #fff;
+}</code></pre>
+        <p>Want a real image file instead? Make one at <a href="https://88x31.siena.codes">88x31.siena.codes</a>.</p>
+      </section>
+
+      <section class="box lesson" id="stars" aria-labelledby="l5">
+        <h2 class="bar" id="l5">5. Starry background</h2>
+        <p>The page background stacks three layers. Two are grids of tiny white dots made with <code>radial-gradient</code>, at different spacings so they don't line up. The third is the sky fade. <code>background-attachment: fixed</code> pins the stars in place while you scroll.</p>
+        <div class="demo stars-demo" aria-hidden="true"></div>
+<pre><code>body {
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(255,255,255,.55) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 75% 70%, rgba(255,255,255,.4) 0 1px, transparent 1.5px),
+    linear-gradient(180deg, #22bfd8, #d2f5fb);
+  background-size: 28px 28px, 41px 41px, 100% 100%;
+  background-attachment: fixed;
+}</code></pre>
+      </section>
+
+      <section class="box lesson" id="chrome" aria-labelledby="l6">
+        <h2 class="bar" id="l6">6. Chrome logo</h2>
+        <p>The shiny logo is a gradient painted behind the text, then clipped to the letter shapes. The hard stop at 50% makes it look like metal. A thin outline sharpens the edges.</p>
+        <div class="demo"><span class="logo demo-logo"><a href="/">chrome</a></span></div>
+<pre><code>.logo a {
+  background: linear-gradient(180deg,
+    #0a86a8 0%, #d2f5fb 45%, #05506e 50%, #22bfd8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 1px #05506e;
+}</code></pre>
+      </section>
+
+      <section class="box lesson" id="ticker" aria-labelledby="l7">
+        <h2 class="bar" id="l7">7. Scrolling ticker</h2>
+        <p>Old sites used the <code>&lt;marquee&gt;</code> tag. It still works in most browsers, but the HTML standard lists it as obsolete, so the What's New bar uses a CSS animation instead. The list slides left forever. A second copy of the list follows right behind it, so there's never a gap.</p>
+        <div class="demo"><div class="ticker demo-ticker"><span class="ticker-label">News</span><div class="ticker-track"><ul class="ticker-items"><li>you are reading a tutorial</li><li>pause me by hovering</li></ul><ul class="ticker-items" aria-hidden="true"><li>you are reading a tutorial</li><li>pause me by hovering</li></ul></div></div></div>
+<pre><code>.ticker-items {
+  display: flex;
+  animation: scroll 38s linear infinite;
+}
+.ticker:hover .ticker-items {
+  animation-play-state: paused;
+}
+@keyframes scroll {
+  to { transform: translateX(-100%); }
+}</code></pre>
+      </section>
+
+      <section class="box lesson" id="blink" aria-labelledby="l8">
+        <h2 class="bar" id="l8">8. Blinking "new!"</h2>
+        <p>The <code>&lt;blink&gt;</code> tag is gone for good, but CSS can still do it. <code>steps(2)</code> makes the animation jump between on and off instead of fading.</p>
+        <div class="demo"><span class="new">new!</span></div>
+<pre><code>.new {
+  animation: blink 1.2s steps(2, start) infinite;
+}
+@keyframes blink {
+  to { visibility: hidden; }
+}</code></pre>
+      </section>
+
+      <section class="box lesson" id="pixels" aria-labelledby="l9">
+        <h2 class="bar" id="l9">9. Pixel art</h2>
+        <p>Scale a small pixel image up and browsers blur it. <code>image-rendering: pixelated</code> stops the blur, so every pixel stays square. The webmaster doll is 32 by 125 pixels, shown at double size.</p>
+        <div class="demo"><img class="demo-doll" src="img/webmaster.png" width="32" height="125" alt="A 32 by 125 pixel doll of Siena at actual size"> <img class="demo-doll" src="img/webmaster.png" width="64" height="250" alt="The same doll at double size, still sharp"></div>
+<pre><code>&lt;img src="img/webmaster.png" width="64" height="250"
+     style="image-rendering: pixelated" alt="..."&gt;</code></pre>
+        <p>The sparkle and heart cursors are drawn from text. Each letter is one pixel color, and a dot means see-through. A script paints the grid onto a <code>&lt;canvas&gt;</code>, turns it into an image, and hands it to CSS <code>cursor</code>.</p>
+        <div class="demo sprite-demo">
+<pre class="grid" id="grid">....o....
+....o....
+...oyo...
+..oyyyo..
+ooyywyyoo
+..oyyyo..
+...oyo...
+....o....
+....o....</pre>
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+          <img id="sprite" width="72" height="72" alt="The sparkle that grid draws">
+        </div>
+<pre><code>const colors = { o: "#05506e", y: "#fff0aa", w: "#ffffff" };
+rows.forEach((row, y) =&gt;
+  [...row].forEach((ch, x) =&gt; {
+    if (!colors[ch]) return;
+    ctx.fillStyle = colors[ch];
+    ctx.fillRect(x, y, 1, 1);
+  })
+);
+document.documentElement.style.cursor =
+  `url(${canvas.toDataURL()}) 4 4, auto`;</code></pre>
+        <p class="small">The two numbers after the image are the hotspot, the exact pixel that does the clicking.</p>
+      </section>
+
+      <section class="box lesson" id="counter" aria-labelledby="l10">
+        <h2 class="bar" id="l10">10. Hit counter</h2>
+        <p>Old hit counters were images served by someone else's computer, which counted every visitor. This one stores a number in your own browser with <code>localStorage</code>. It only counts your visits, and nobody else can see it.</p>
+<pre><code>let n = Number(localStorage.getItem("visits") || 0) + 1;
+localStorage.setItem("visits", String(n));
+counter.textContent = String(n).padStart(6, "0");</code></pre>
+      </section>
+
+      <section class="box lesson" id="kind" aria-labelledby="l11">
+        <h2 class="bar" id="l11">11. Be kind to visitors</h2>
+        <p>Some people get dizzy from moving things, and their computer can say so. This turns the animations off for them.</p>
+<pre><code>@media (prefers-reduced-motion: reduce) {
+  .spark, .new, .ticker-items { animation: none; }
+}</code></pre>
+        <p>Give every image an <code>alt</code> description for people using screen readers. Keep a visible outline on whatever has keyboard focus. Try pressing <kbd>Tab</kbd> on this page to see it.</p>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <p class="small center">Back to the <a href="/">siena.codes portal</a>.</p>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const rows = document.getElementById("grid").textContent.trim().split("\n");
+  const colors = { o: "#05506e", y: "#fff0aa", w: "#ffffff" };
+  const canvas = document.createElement("canvas");
+  canvas.width = rows[0].length;
+  canvas.height = rows.length;
+  const ctx = canvas.getContext("2d");
+  rows.forEach((row, y) =>
+    [...row].forEach((ch, x) => {
+      if (!colors[ch]) return;
+      ctx.fillStyle = colors[ch];
+      ctx.fillRect(x, y, 1, 1);
+    })
+  );
+  document.getElementById("sprite").src = canvas.toDataURL();
+})();
+</script>
+</body>
+</html>

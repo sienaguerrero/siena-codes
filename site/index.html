@@ -1,0 +1,161 @@
+<!doctype html>
+<!--
+      o
+      o
+     oyo        Hi, you found the source!
+    oyyyo       Everything here is plain HTML and CSS.
+  ooyywyyoo     Take whatever you like.
+    oyyyo
+     oyo        Lessons: https://siena.codes/html-for-newbies.html
+      o
+      o
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>siena.codes portal</title>
+<meta name="description" content="Siena's projects on siena.codes, all in one Y2K portal.">
+<meta property="og:title" content="siena.codes portal">
+<meta property="og:description" content="Your portal to the siena.codes web.">
+<meta property="og:url" content="https://siena.codes/">
+<link rel="canonical" href="https://siena.codes/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#directory">Skip to the directory</a>
+
+<div class="page">
+  <header class="masthead">
+    <div class="logo-row">
+      <h1 class="logo"><a href="/"><span class="spark" aria-hidden="true">&#10022;</span>siena<span class="dot">.</span>codes<span class="spark s2" aria-hidden="true">&#10023;</span></a></h1>
+      <p class="tagline">your portal to the <b>siena.codes</b> web <span class="new">new!</span></p>
+    </div>
+
+    <nav class="tabs" aria-label="Portal">
+      <a href="#directory" class="tab on">Directory</a>
+      <a href="#whatsnew" class="tab">What's New</a>
+      <a href="#webring" class="tab">Webring</a>
+      <a href="#webmaster" class="tab">Webmaster</a>
+      <a href="html-for-newbies.html" class="tab">HTML for Newbies</a>
+      <a href="https://sienaguerrero.com" class="tab">sienaguerrero.com</a>
+    </nav>
+
+    <form class="search" role="search" id="search">
+      <label for="q">Search the siena.codes web:</label>
+      <div class="search-row">
+        <input id="q" name="q" type="search" autocomplete="off" placeholder="try &quot;quilt&quot; or &quot;2019&quot;">
+        <button type="submit" class="btn">Go!</button>
+      </div>
+    </form>
+  </header>
+
+  <div class="ticker" id="whatsnew" aria-label="What's new">
+    <span class="ticker-label">What's New</span>
+    <div class="ticker-track">
+      <ul class="ticker-items">
+        <li><b>11.05.2026</b> NEW! groover.siena.codes, back from 2019</li>
+        <li><b>11.02.2026</b> NEW! austral.siena.codes</li>
+        <li><b>11.01.2026</b> NEW! blinkie.siena.codes</li>
+        <li><b>10.30.2026</b> NEW! quarterinch.siena.codes</li>
+        <li><b>10.28.2026</b> NEW! notafriendof.siena.codes</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="layout">
+    <aside class="col left">
+      <section class="box" aria-labelledby="ch-h">
+        <h2 class="bar" id="ch-h">Channels</h2>
+        <ul class="channels" id="channels">
+          <li><button type="button" data-channel="all" class="on">All sites <span class="count"></span></button></li>
+        </ul>
+      </section>
+
+      <section class="box" aria-labelledby="clock-h">
+        <h2 class="bar" id="clock-h">Local Time</h2>
+        <p class="clock" id="clock">--:--:--</p>
+        <p class="small center" id="date"></p>
+      </section>
+
+      <section class="box" aria-labelledby="visits-h">
+        <h2 class="bar" id="visits-h">Hit Counter</h2>
+        <p class="counter" id="counter" aria-label="Your visits">000001</p>
+        <p class="small center">your visits (this browser only)</p>
+      </section>
+    </aside>
+
+    <main class="col mid">
+      <section class="box" id="directory" aria-labelledby="dir-h">
+        <h2 class="bar" id="dir-h">Directory <span class="bar-note" id="result-note"></span></h2>
+        <ol class="sites" id="sites"></ol>
+        <p class="empty" id="empty" hidden>No sites match. Try fewer letters, or <button type="button" class="linkish" id="clear">show everything</button>.</p>
+      </section>
+    </main>
+
+    <aside class="col right">
+      <section class="box" id="webmaster" aria-labelledby="wm-h">
+        <h2 class="bar" id="wm-h">Webmaster</h2>
+        <div class="webmaster">
+          <img src="img/webmaster.png" width="64" height="250" alt="Siena as a pixel doll: blonde bob, black tank top, flared jeans">
+          <div>
+            <p>Hi, I'm <b>Siena</b>. I made every site on this portal.</p>
+            <p><a href="https://sienaguerrero.com">sienaguerrero.com</a></p>
+            <p><a href="https://github.com/sienaguerrero">github</a></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="box cursor-box" aria-labelledby="cur-h">
+        <h2 class="bar" id="cur-h">Cursor</h2>
+        <div class="cursor-picks" role="group" aria-label="Choose a mouse cursor">
+          <button type="button" class="btn" data-cursor="sparkle" aria-pressed="false">&#10022; Sparkle</button>
+          <button type="button" class="btn" data-cursor="hearts" aria-pressed="false">&hearts; Hearts</button>
+          <button type="button" class="btn" data-cursor="plain" aria-pressed="true">Plain</button>
+        </div>
+        <p class="small center">No ActiveX required.</p>
+      </section>
+
+      <section class="box" aria-labelledby="soon-h">
+        <h2 class="bar" id="soon-h">Coming Soon</h2>
+        <div class="construction">
+          <p class="cone" aria-hidden="true">&#9888;</p>
+          <ul class="soon">
+            <li><b>cuarenta.siena.codes</b><span class="small">Play Ecuador's national card game against Don Lucho, a computer opponent.</span></li>
+            <li><b>dollz.siena.codes</b><span class="small">Real Housewives reunion looks as Y2K pixel dollz, and the code that builds them.</span></li>
+            <li><b>nat20.siena.codes</b><span class="small">Tabletop character sheets for the web and a handheld badge.</span></li>
+          </ul>
+          <p class="stripes" aria-hidden="true"></p>
+          <p class="small center">under construction</p>
+        </div>
+      </section>
+
+      <section class="box" id="webring" aria-labelledby="ring-h">
+        <h2 class="bar" id="ring-h">siena.codes Webring</h2>
+        <p class="small center">Hop from site to site.</p>
+        <div class="ring">
+          <a class="btn" id="ring-prev" href="#">&laquo; prev</a>
+          <a class="btn" id="ring-rand" href="#">random</a>
+          <a class="btn" id="ring-next" href="#">next &raquo;</a>
+        </div>
+        <p class="small center" id="ring-here"></p>
+      </section>
+    </aside>
+  </div>
+
+  <footer class="footer">
+    <ul class="buttons" aria-label="Badges">
+      <li><span class="b88 b-a">siena<br><b>.codes</b></span></li>
+      <li><span class="b88 b-b">best viewed<br>with <b>any</b> browser</span></li>
+      <li><span class="b88 b-c"><b>NO</b> trackers<br>no cookies</span></li>
+      <li><span class="b88 b-d">hosted on<br><b>GitHub Pages</b></span></li>
+      <li><span class="b88 b-e">made with<br><b>&hearts; + HTML</b></span></li>
+    </ul>
+    <p class="small center">&copy; 2026 Siena Guerrero. Best viewed at 800&times;600.</p>
+  </footer>
+</div>
+
+<script src="portal.js"></script>
+</body>
+</html>
