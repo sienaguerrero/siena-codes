@@ -18,6 +18,15 @@ const SITES = [
     button: "b-glitter",
   },
   {
+    sub: "88x31",
+    title: "88x31 button maker",
+    blurb: "Make a Y2K-style 88x31 web button and save it as a PNG or GIF.",
+    channel: "Arts & Crafts",
+    opened: "11.08.2026",
+    tags: "button badge 88x31 maker png gif y2k webring",
+    button: "b-chrome",
+  },
+  {
     sub: "quarterinch",
     title: "The Geometry of Cloth",
     blurb: "Quilt history and the math inside the blocks, plus a planner for cut sizes and yardage.",

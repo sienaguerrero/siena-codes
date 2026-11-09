@@ -371,6 +371,7 @@ a:hover {
   text-shadow: 0 0 3px #fff, 0 0 3px #fff;
 }
 .b-ice { background: linear-gradient(180deg, #ffffff, #8fd6ff 60%, #2b7bd1); color: #062a54; }
+.b-chrome { background: linear-gradient(180deg, #ffffff, var(--silver) 50%, var(--silver-lo) 51%, var(--silver)); color: var(--deep); }
 .b-groove { background: repeating-linear-gradient(90deg, #111 0 6px, #2a2a2a 6px 12px); color: var(--lime); }
 .b-a { background: var(--deep); color: #fff; }
 .b-b { background: #fff; color: #000; }
