@@ -36,6 +36,15 @@ const SITES = [
     button: "b-quilt",
   },
   {
+    sub: "sixstrand",
+    title: "Thread Match",
+    blurb: "Snap a photo of fabric, tap a spot, and get the closest DMC embroidery floss.",
+    channel: "Arts & Crafts",
+    opened: "11.13.2026",
+    tags: "embroidery floss thread dmc color match fabric cross stitch sewing",
+    button: "b-floss",
+  },
+  {
     sub: "austral",
     title: "Four Southern Hemisphere climate charts",
     blurb: "Four climate charts from my 2017 Harvey Mudd CS35 team project, rebuilt in 2026.",
