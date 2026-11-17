@@ -278,9 +278,13 @@ a:hover {
   color: var(--sea);
   text-decoration: none;
 }
-.channels button:hover { background: var(--butter); }
+.channels button:hover {
+  color: var(--deep);
+  text-decoration-thickness: 3px;
+  text-decoration-color: var(--cyan);
+}
 .channels button.on { font-weight: bold; color: var(--ink); text-decoration: none; background: var(--foam); }
-.count { color: #6b7280; font-weight: normal; }
+.count { display: inline-block; color: #6b7280; font-weight: normal; }
 
 .clock {
   margin: 6px 10px 2px;
