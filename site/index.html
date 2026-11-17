@@ -21,40 +21,40 @@
 <meta property="og:url" content="https://siena.codes/">
 <link rel="canonical" href="https://siena.codes/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="y2k.css">
 <link rel="stylesheet" href="style.css">
+<script src="y2k.js" defer></script>
 </head>
-<body>
-<a class="skip" href="#directory">Skip to the directory</a>
+<body class="y2k-sky">
+<a class="y2k-skip" href="#directory">Skip to the directory</a>
 
 <div class="page">
-  <header class="masthead">
-    <div class="logo-row">
-      <h1 class="logo"><a href="/"><span class="spark" aria-hidden="true">&#10022;</span>siena<span class="dot">.</span>codes<span class="spark s2" aria-hidden="true">&#10023;</span></a></h1>
-      <p class="tagline">your portal to the <b>siena.codes</b> web <span class="new">new!</span></p>
+  <header class="y2k-masthead">
+    <div class="y2k-logo-row">
+      <h1 class="y2k-wordmark"><a href="/"><span class="y2k-spark" aria-hidden="true"></span>siena<span class="y2k-wordmark-dot">.</span>codes<span class="y2k-spark y2k-spark-2" aria-hidden="true"></span></a></h1>
+      <span class="y2k-blinkie" role="img" aria-label="portal"><i>p</i><i>o</i><i>r</i><i>t</i><i>a</i><i>l</i></span>
+      <p class="y2k-tagline">your portal to the <b>siena.codes</b> web <span class="y2k-new">new!</span></p>
     </div>
 
-    <nav class="tabs" aria-label="Portal">
-      <a href="#directory" class="tab on">Directory</a>
-      <a href="#whatsnew" class="tab">What's New</a>
-      <a href="#webring" class="tab">Webring</a>
-      <a href="#webmaster" class="tab">Webmaster</a>
-      <a href="html-for-newbies.html" class="tab">HTML for Newbies</a>
-      <a href="https://sienaguerrero.com" class="tab">sienaguerrero.com</a>
+    <nav class="y2k-tabs" aria-label="Portal">
+      <a href="/" class="y2k-tab" aria-current="page">Portal</a>
+      <a href="html-for-newbies.html" class="y2k-tab">HTML for Newbies</a>
+      <a href="https://sienaguerrero.com" class="y2k-tab">sienaguerrero.com</a>
     </nav>
 
     <form class="search" role="search" id="search">
-      <label for="q">Search the siena.codes web:</label>
-      <div class="search-row">
-        <input id="q" name="q" type="search" autocomplete="off" placeholder="try &quot;quilt&quot; or &quot;2019&quot;">
-        <button type="submit" class="btn">Go!</button>
+      <label class="y2k-label" for="q">Search the siena.codes web:</label>
+      <div class="y2k-search-row">
+        <input class="y2k-input" id="q" name="q" type="search" autocomplete="off" placeholder="try &quot;quilt&quot; or &quot;2019&quot;">
+        <button type="submit" class="y2k-btn">Go!</button>
       </div>
     </form>
   </header>
 
-  <div class="ticker" id="whatsnew" aria-label="What's new">
-    <span class="ticker-label">What's New</span>
-    <div class="ticker-track">
-      <ul class="ticker-items">
+  <div class="y2k-ticker" id="whatsnew" role="marquee" aria-label="What's new">
+    <span class="y2k-ticker-label">What's New</span>
+    <div class="y2k-ticker-track">
+      <ul class="y2k-ticker-items">
         <li><b>11.13.2026</b> NEW! sixstrand.siena.codes</li>
         <li><b>11.08.2026</b> NEW! 88x31.siena.codes</li>
         <li><b>11.05.2026</b> NEW! groover.siena.codes, back from 2019</li>
@@ -64,41 +64,63 @@
         <li><b>10.28.2026</b> NEW! notafriendof.siena.codes</li>
       </ul>
     </div>
+    <button type="button" class="y2k-ticker-pause" aria-pressed="false" aria-label="Pause the ticker">&#8214;</button>
   </div>
 
   <div class="layout">
     <aside class="col left">
-      <section class="box" aria-labelledby="ch-h">
-        <h2 class="bar" id="ch-h">Channels</h2>
+      <section class="y2k-box" aria-labelledby="ch-h">
+        <h2 class="y2k-bar" id="ch-h">Channels</h2>
         <ul class="channels" id="channels">
           <li><button type="button" data-channel="all" class="on">All sites <span class="count"></span></button></li>
         </ul>
       </section>
 
-      <section class="box" aria-labelledby="clock-h">
-        <h2 class="bar" id="clock-h">Local Time</h2>
-        <p class="clock" id="clock">--:--:--</p>
+      <section class="y2k-box" aria-labelledby="clock-h">
+        <h2 class="y2k-bar" id="clock-h">Local Time</h2>
+        <p class="y2k-lcd y2k-clock y2k-lcd-yellow clock" id="clock">--:--:--</p>
         <p class="small center" id="date"></p>
       </section>
 
-      <section class="box" aria-labelledby="visits-h">
-        <h2 class="bar" id="visits-h">Hit Counter</h2>
-        <p class="counter" id="counter" aria-label="Your visits">000001</p>
+      <section class="y2k-box" aria-labelledby="visits-h">
+        <h2 class="y2k-bar" id="visits-h">Hit Counter</h2>
+        <p class="y2k-lcd y2k-lcd-counter y2k-lcd-blue counter" id="counter" aria-label="Your visits">000001</p>
         <p class="small center">your visits (this browser only)</p>
+      </section>
+
+      <section class="y2k-box cursor-box" aria-labelledby="cur-h">
+        <h2 class="y2k-bar" id="cur-h">Cursor</h2>
+        <div class="cursor-picks" role="group" aria-label="Choose a mouse cursor">
+          <button type="button" class="y2k-btn y2k-btn-small" data-cursor="sparkle" aria-pressed="false">&#10022; Sparkle</button>
+          <button type="button" class="y2k-btn y2k-btn-small" data-cursor="hearts" aria-pressed="false">&hearts; Hearts</button>
+          <button type="button" class="y2k-btn y2k-btn-small" data-cursor="plain" aria-pressed="true">Plain</button>
+        </div>
+        <p class="small center">No ActiveX required.</p>
+      </section>
+
+      <section class="y2k-box" id="webring" aria-labelledby="ring-h">
+        <h2 class="y2k-bar" id="ring-h">siena.codes Webring</h2>
+        <p class="small center">Hop from site to site.</p>
+        <div class="ring">
+          <a class="y2k-btn y2k-btn-small" id="ring-prev" href="#">&laquo; prev</a>
+          <a class="y2k-btn y2k-btn-small" id="ring-rand" href="#">random</a>
+          <a class="y2k-btn y2k-btn-small" id="ring-next" href="#">next &raquo;</a>
+        </div>
+        <p class="small center" id="ring-here"></p>
       </section>
     </aside>
 
     <main class="col mid">
-      <section class="box" id="directory" aria-labelledby="dir-h">
-        <h2 class="bar" id="dir-h">Directory <span class="bar-note" id="result-note"></span></h2>
+      <section class="y2k-box" id="directory" aria-labelledby="dir-h">
+        <h2 class="y2k-bar" id="dir-h">Directory <span class="y2k-bar-note" id="result-note"></span></h2>
         <ol class="sites" id="sites"></ol>
         <p class="empty" id="empty" hidden>No sites match. Try fewer letters, or <button type="button" class="linkish" id="clear">show everything</button>.</p>
       </section>
     </main>
 
     <aside class="col right">
-      <section class="box" id="webmaster" aria-labelledby="wm-h">
-        <h2 class="bar" id="wm-h">Webmaster</h2>
+      <section class="y2k-box" id="webmaster" aria-labelledby="wm-h">
+        <h2 class="y2k-bar" id="wm-h">Webmaster</h2>
         <div class="webmaster">
           <img src="img/webmaster.png" width="64" height="250" alt="Siena as a pixel doll: blonde bob, black tank top, flared jeans">
           <div>
@@ -109,18 +131,8 @@
         </div>
       </section>
 
-      <section class="box cursor-box" aria-labelledby="cur-h">
-        <h2 class="bar" id="cur-h">Cursor</h2>
-        <div class="cursor-picks" role="group" aria-label="Choose a mouse cursor">
-          <button type="button" class="btn" data-cursor="sparkle" aria-pressed="false">&#10022; Sparkle</button>
-          <button type="button" class="btn" data-cursor="hearts" aria-pressed="false">&hearts; Hearts</button>
-          <button type="button" class="btn" data-cursor="plain" aria-pressed="true">Plain</button>
-        </div>
-        <p class="small center">No ActiveX required.</p>
-      </section>
-
-      <section class="box" aria-labelledby="soon-h">
-        <h2 class="bar" id="soon-h">Coming Soon</h2>
+      <section class="y2k-box" aria-labelledby="soon-h">
+        <h2 class="y2k-bar" id="soon-h">Coming Soon</h2>
         <div class="construction">
           <p class="cone" aria-hidden="true">&#9888;</p>
           <ul class="soon">
@@ -133,16 +145,6 @@
         </div>
       </section>
 
-      <section class="box" id="webring" aria-labelledby="ring-h">
-        <h2 class="bar" id="ring-h">siena.codes Webring</h2>
-        <p class="small center">Hop from site to site.</p>
-        <div class="ring">
-          <a class="btn" id="ring-prev" href="#">&laquo; prev</a>
-          <a class="btn" id="ring-rand" href="#">random</a>
-          <a class="btn" id="ring-next" href="#">next &raquo;</a>
-        </div>
-        <p class="small center" id="ring-here"></p>
-      </section>
     </aside>
   </div>
 

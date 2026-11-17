@@ -86,9 +86,9 @@ function renderSites() {
           <h3><a href="${url(site)}">${site.title}</a></h3>
           <p class="addr">${site.sub}.siena.codes</p>
           <p>${site.blurb}</p>
-          <p class="meta"><span class="chip">${site.channel}</span> opened ${site.opened}</p>
+          <p class="meta"><span class="y2k-chip">${site.channel}</span> opened ${site.opened}</p>
         </div>
-        <a class="btn visit" href="${url(site)}">Visit &raquo;</a>`;
+        <a class="y2k-btn visit" href="${url(site)}">Visit &raquo;</a>`;
       return li;
     })
   );
@@ -174,14 +174,6 @@ function countVisit() {
   } catch {}
   $("#counter").textContent = String(n).padStart(6, "0");
   $("#counter").setAttribute("aria-label", `${n} visits from you`);
-}
-
-function cloneTicker() {
-  if (reduceMotion) return;
-  const items = $(".ticker-items");
-  const copy = items.cloneNode(true);
-  copy.setAttribute("aria-hidden", "true");
-  items.after(copy);
 }
 
 const SPRITES = {
@@ -299,7 +291,6 @@ renderChannels();
 wireSearch();
 wireRing();
 filter();
-cloneTicker();
 wireCursor();
 countVisit();
 greetConsole();

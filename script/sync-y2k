@@ -1,0 +1,7 @@
+#!/bin/sh
+set -eu
+here="$(cd "$(dirname "$0")/.." && pwd)"
+src="${1:-$here/../y2k-ui}"
+cp "$src/y2k.css" "$src/y2k.js" "$here/site/"
+printf "y2k-ui %s %s\n" "$(git -C "$src" rev-parse --short HEAD)" "$(date +%F)" > "$here/y2k-ui.lock"
+cat "$here/y2k-ui.lock"
