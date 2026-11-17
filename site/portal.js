@@ -284,6 +284,7 @@ function greetConsole() {
     "font: bold 16px Verdana, sans-serif; color: #fff0aa; background: #05506e; padding: 4px 10px; border-radius: 3px;"
   );
   console.log("Hi, DevTools friend. Lessons: https://siena.codes/html-for-newbies.html");
+  console.log("Since you are here: sign the guestbook at https://siena.codes/guestbook.html");
 }
 
 renderSites();

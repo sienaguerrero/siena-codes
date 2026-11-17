@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guestbook · siena.codes</title>
+<meta name="description" content="Sign the siena.codes guestbook. Entries stay in your own browser.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://siena.codes/guestbook.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="y2k.css">
+<link rel="stylesheet" href="style.css">
+<script src="y2k.js" defer></script>
+</head>
+<body class="y2k-sky">
+<a class="y2k-skip" href="#guestbook">Skip to the guestbook</a>
+
+<div class="page">
+  <header class="y2k-masthead">
+    <div class="y2k-logo-row">
+      <p class="y2k-wordmark"><a href="/"><span class="y2k-spark" aria-hidden="true"></span>siena<span class="y2k-wordmark-dot">.</span>codes<span class="y2k-spark y2k-spark-2" aria-hidden="true"></span></a></p>
+      <span class="y2k-blinkie y2k-blinkie-hot" role="img" aria-label="secret"><i>s</i><i>e</i><i>c</i><i>r</i><i>e</i><i>t</i></span>
+      <p class="y2k-tagline">you found the guestbook. <b>sign it.</b></p>
+    </div>
+
+    <nav class="y2k-tabs" aria-label="Portal">
+      <a href="/" class="y2k-tab">Portal</a>
+      <a href="html-for-newbies.html" class="y2k-tab">HTML for Newbies</a>
+      <a href="https://sienaguerrero.com" class="y2k-tab">sienaguerrero.com</a>
+    </nav>
+  </header>
+
+  <div class="layout learn">
+    <aside class="col left">
+      <section class="y2k-box" aria-labelledby="rules-h">
+        <h2 class="y2k-bar" id="rules-h">House rules</h2>
+        <ul class="y2k-orbs">
+          <li>be nice</li>
+          <li>no chain letters</li>
+          <li>HTML is off</li>
+          <li>Tom is everyone's friend</li>
+        </ul>
+        <hr class="y2k-divider" aria-hidden="true">
+        <p class="small">This guestbook keeps your entries in your own browser, like the hit counter. Nobody else can read them, which makes it the most private guestbook on the web.</p>
+      </section>
+    </aside>
+
+    <main class="col mid" id="guestbook">
+      <section class="y2k-window" aria-labelledby="gb-h">
+        <div class="y2k-titlebar">
+          <h1 class="y2k-titlebar-title" id="gb-h">Guestbook</h1>
+          <div class="y2k-winbtns">
+            <a class="y2k-winbtn" href="/" aria-label="Back to the portal">&times;</a>
+          </div>
+        </div>
+        <div class="y2k-window-body">
+          <div class="y2k-guestbook">
+            <form class="y2k-guestbook-form" id="gb-form">
+              <label class="y2k-label" for="gb-name">Name<input class="y2k-input" id="gb-name" name="name" required maxlength="40" autocomplete="nickname"></label>
+              <label class="y2k-label" for="gb-from">From <small>city, planet, wherever</small><input class="y2k-input" id="gb-from" name="from" maxlength="40"></label>
+              <label class="y2k-label y2k-guestbook-wide" for="gb-text">Message<textarea class="y2k-textarea" id="gb-text" name="text" required maxlength="280" rows="3"></textarea></label>
+              <div class="y2k-guestbook-wide"><button type="submit" class="y2k-gel">Sign the guestbook</button></div>
+            </form>
+            <p class="y2k-msg y2k-msg-ok" role="status" id="gb-thanks" hidden>Thanks for signing! Your entry is saved in this browser.</p>
+            <ol class="y2k-guestbook-entries" id="gb-entries" aria-label="Entries">
+              <li class="y2k-guestbook-entry">
+                <div class="y2k-guestbook-head"><span class="y2k-guestbook-name">Siena</span><span class="y2k-guestbook-from">from Los Angeles</span><time class="y2k-guestbook-date" datetime="2026-11-16">11.16.2026</time></div>
+                <p class="y2k-guestbook-text">First! You found the secret page. Sign below and it stays with you.</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="y2k-statusbar">
+          <span class="y2k-statusbar-pane">Done</span>
+          <span class="y2k-statusbar-pane" aria-live="polite" id="gb-count">1 entry</span>
+          <span class="y2k-statusbar-pane">this browser only</span>
+          <span class="y2k-statusbar-grip" aria-hidden="true"></span>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <p class="small center">Back to the <a href="/">siena.codes portal</a>.</p>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const KEY = "guestbook";
+  const form = document.getElementById("gb-form");
+  const list = document.getElementById("gb-entries");
+  const count = document.getElementById("gb-count");
+  const thanks = document.getElementById("gb-thanks");
+  const pad = (n) => String(n).padStart(2, "0");
+
+  const load = () => {
+    try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch { return []; }
+  };
+  const save = (entries) => {
+    try { localStorage.setItem(KEY, JSON.stringify(entries)); } catch {}
+  };
+
+  const render = (entry) => {
+    const li = document.createElement("li");
+    li.className = "y2k-guestbook-entry";
+    const head = document.createElement("div");
+    head.className = "y2k-guestbook-head";
+    const name = document.createElement("span");
+    name.className = "y2k-guestbook-name";
+    name.textContent = entry.name;
+    head.append(name);
+    if (entry.from) {
+      const from = document.createElement("span");
+      from.className = "y2k-guestbook-from";
+      from.textContent = `from ${entry.from}`;
+      head.append(from);
+    }
+    const date = document.createElement("time");
+    date.className = "y2k-guestbook-date";
+    date.dateTime = entry.date;
+    const [y, m, d] = entry.date.split("-");
+    date.textContent = `${m}.${d}.${y}`;
+    head.append(date);
+    const text = document.createElement("p");
+    text.className = "y2k-guestbook-text";
+    text.textContent = entry.text;
+    li.append(head, text);
+    list.append(li);
+  };
+
+  const tally = () => {
+    const n = list.children.length;
+    count.textContent = `${n} ${n === 1 ? "entry" : "entries"}`;
+  };
+
+  const entries = load();
+  entries.forEach(render);
+  tally();
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const now = new Date();
+    const entry = {
+      name: String(data.get("name")).trim().slice(0, 40),
+      from: String(data.get("from") || "").trim().slice(0, 40),
+      text: String(data.get("text")).trim().slice(0, 280),
+      date: `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`,
+    };
+    if (!entry.name || !entry.text) return;
+    entries.push(entry);
+    save(entries);
+    render(entry);
+    tally();
+    form.reset();
+    thanks.hidden = false;
+    document.getElementById("gb-name").focus();
+  });
+})();
+</script>
+</body>
+</html>
