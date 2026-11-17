@@ -278,9 +278,13 @@ a:hover {
   color: var(--sea);
   text-decoration: none;
 }
-.channels button:hover { background: var(--butter); }
+.channels button:hover {
+  color: var(--deep);
+  text-decoration-thickness: 3px;
+  text-decoration-color: var(--cyan);
+}
 .channels button.on { font-weight: bold; color: var(--ink); text-decoration: none; background: var(--foam); }
-.count { color: #6b7280; font-weight: normal; }
+.count { display: inline-block; color: #6b7280; font-weight: normal; }
 
 .clock {
   margin: 6px 10px 2px;
@@ -375,8 +379,8 @@ a:hover {
 .b-floss { background: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0 1px, transparent 1px 3px), linear-gradient(90deg, #ff9ec7, #ffd27a, #9be7a5, #8fd6ff, #c8a7ff); color: #4a1036; }
 .b-groove { background: repeating-linear-gradient(90deg, #111 0 6px, #2a2a2a 6px 12px); color: var(--lime); }
 .b-a { background: var(--deep); color: #fff; }
-.b-b { background: #fff; color: #000; }
-.b-c { background: #c1ff6b; color: #133000; }
+.b-b { background: linear-gradient(180deg, var(--foam), var(--cyan)); color: var(--deep); }
+.b-c { background: linear-gradient(180deg, var(--sea), var(--deep)); color: #fff; }
 .b-d { background: #24292f; color: #fff; }
 .b-e { background: var(--butter); color: var(--deep); }
 
