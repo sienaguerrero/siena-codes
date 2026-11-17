@@ -2,6 +2,14 @@
 
 A Y2K-style web portal for the projects that live on siena.codes subdomains. Plain HTML, CSS, and JS in `site/`, deployed to GitHub Pages by `.github/workflows/pages.yml` on every push to `main`.
 
+## Shared look
+
+The sky, bevels, wordmark, tabs, ticker, LCDs and blinkie come from [y2k-ui](https://github.com/sienaguerrero/y2k-ui), vendored as `site/y2k.css` and `site/y2k.js`. `site/style.css` holds only this site's own layout: the three columns, the directory list, the 88x31 badges, the cursor picker and the lessons page. To pick up a newer library, run the sync from a checkout that sits next to this one (or pass its path), then commit the two files and `y2k-ui.lock`, which records the library commit:
+
+```bash
+script/sync-y2k
+```
+
 ## Adding a site
 
 Add an entry to `SITES` in `site/portal.js` and a line to the What's New ticker in `site/index.html`. Channels, counts, search, and the webring all read from `SITES`.
