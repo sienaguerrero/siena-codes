@@ -41,7 +41,7 @@
           <li>Tom is everyone's friend</li>
         </ul>
         <hr class="y2k-divider" aria-hidden="true">
-        <p class="small">This guestbook keeps your entries in your own browser, like the hit counter. Nobody else can read them, which makes it the most private guestbook on the web.</p>
+        <p class="small">This guestbook keeps your entries in your own browser, like the hit counter. Nothing leaves it unless you choose to send an entry, which makes it the most private guestbook on the web.</p>
       </section>
     </aside>
 
@@ -94,11 +94,19 @@
   const thanks = document.getElementById("gb-thanks");
   const pad = (n) => String(n).padStart(2, "0");
 
+  const valid = (e) =>
+    e !== null && typeof e === "object" &&
+    typeof e.name === "string" && typeof e.text === "string" &&
+    typeof e.date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(e.date);
+
   const load = () => {
-    try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch { return []; }
+    try {
+      const stored = JSON.parse(localStorage.getItem(KEY) || "[]");
+      return Array.isArray(stored) ? stored.filter(valid) : [];
+    } catch { return []; }
   };
   const save = (entries) => {
-    try { localStorage.setItem(KEY, JSON.stringify(entries)); } catch {}
+    try { localStorage.setItem(KEY, JSON.stringify(entries)); return true; } catch { return false; }
   };
 
   const render = (entry) => {
@@ -150,10 +158,14 @@
     };
     if (!entry.name || !entry.text) return;
     entries.push(entry);
-    save(entries);
+    const saved = save(entries);
     render(entry);
     tally();
     form.reset();
+    thanks.textContent = saved
+      ? "Thanks for signing! Your entry is saved in this browser."
+      : "Thanks for signing! This browser would not save your entry, so it only lasts until you leave this page.";
+    thanks.classList.toggle("y2k-msg-ok", saved);
     thanks.hidden = false;
     document.getElementById("gb-name").focus();
   });
