@@ -1,0 +1,6 @@
+guestbook.siena.codes {
+	request_body {
+		max_size 4KB
+	}
+	reverse_proxy 127.0.0.1:9297
+}

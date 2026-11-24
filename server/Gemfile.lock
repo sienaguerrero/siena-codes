@@ -1,0 +1,42 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    nio4r (2.7.5)
+    puma (8.1.2)
+      nio4r (~> 2.0)
+    rack (3.2.9)
+    roda (3.110.0)
+      rack
+    sqlite3 (2.10.2-aarch64-linux-gnu)
+    sqlite3 (2.10.2-aarch64-linux-musl)
+    sqlite3 (2.10.2-arm-linux-gnu)
+    sqlite3 (2.10.2-arm-linux-musl)
+    sqlite3 (2.10.2-arm64-darwin)
+    sqlite3 (2.10.2-x86-linux-gnu)
+    sqlite3 (2.10.2-x86-linux-musl)
+    sqlite3 (2.10.2-x86_64-darwin)
+    sqlite3 (2.10.2-x86_64-linux-gnu)
+    sqlite3 (2.10.2-x86_64-linux-musl)
+
+PLATFORMS
+  aarch64-linux-gnu
+  aarch64-linux-musl
+  arm-linux-gnu
+  arm-linux-musl
+  arm64-darwin
+  arm64-darwin-25
+  x86-linux-gnu
+  x86-linux-musl
+  x86_64-darwin
+  x86_64-linux
+  x86_64-linux-gnu
+  x86_64-linux-musl
+
+DEPENDENCIES
+  puma (~> 8.0)
+  rack (~> 3.2)
+  roda (~> 3.109)
+  sqlite3 (~> 2.10)
+
+BUNDLED WITH
+   2.6.9
