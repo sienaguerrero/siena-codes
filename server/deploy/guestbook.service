@@ -1,0 +1,22 @@
+[Unit]
+Description=siena.codes guestbook
+After=network.target
+
+[Service]
+User=deploy
+WorkingDirectory=/srv/guestbook/server
+Environment=PATH=/home/deploy/.rbenv/shims:/home/deploy/.rbenv/bin:/usr/local/bin:/usr/bin:/bin
+Environment=RBENV_ROOT=/home/deploy/.rbenv
+Environment=BUNDLE_DEPLOYMENT=true
+Environment=BUNDLE_PATH=/srv/guestbook/bundle
+Environment=WEB_CONCURRENCY=0
+StateDirectory=guestbook
+StateDirectoryMode=0700
+UMask=0077
+ExecStart=/home/deploy/.rbenv/shims/bundle exec puma --bind tcp://127.0.0.1:9297 --environment production
+Restart=on-failure
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

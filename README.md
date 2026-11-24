@@ -20,6 +20,18 @@ Add an entry to `SITES` in `site/portal.js` and a line to the What's New ticker 
 python3 -m http.server 4220 --directory site
 ```
 
+## Guestbook server
+
+`server/` is a small Roda app that takes guestbook entries a visitor chooses to send. It runs at `guestbook.siena.codes` on the shared droplet, not on Pages. It has one write route, `POST /entries`, and no route that reads entries back, so nothing a visitor writes is ever shown to another visitor. `server/deploy/README.md` covers setup, limits and how to read entries.
+
+```bash
+BUNDLE_GEMFILE=server/Gemfile bundle exec ruby script/test_server.rb
+```
+
+```bash
+cd server && SITE_URL=http://localhost:4220 bundle exec puma --bind tcp://127.0.0.1:9297
+```
+
 ## Going live at the apex
 
 1. Push to `main`, then turn on Pages with Actions as the source:

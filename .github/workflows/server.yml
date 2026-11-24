@@ -1,0 +1,103 @@
+name: server
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/server.yml
+      - .ruby-version
+      - script/guestbook.rb
+      - script/test_server.rb
+      - server/**
+  pull_request:
+    paths:
+      - .github/workflows/server.yml
+      - .ruby-version
+      - script/guestbook.rb
+      - script/test_server.rb
+      - server/**
+  workflow_dispatch:
+
+concurrency:
+  group: server-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      BUNDLE_GEMFILE: server/Gemfile
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - run: bundle exec ruby script/test_server.rb
+
+  deploy:
+    needs: test
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.DEPLOY_HOST != ''
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Copy the app to the droplet and restart it
+        env:
+          DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+          DEPLOY_KNOWN_HOSTS: ${{ vars.DEPLOY_KNOWN_HOSTS }}
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/deploy
+          chmod 600 ~/.ssh/deploy
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          ssh="ssh -i $HOME/.ssh/deploy"
+          rsync -az --delete --relative -e "$ssh" .ruby-version server/ "deploy@$DEPLOY_HOST:/srv/guestbook/"
+          $ssh "deploy@$DEPLOY_HOST" 'export PATH="$HOME/.rbenv/shims:$PATH" && cd /srv/guestbook/server && BUNDLE_DEPLOYMENT=true BUNDLE_PATH=/srv/guestbook/bundle bundle install --quiet && sudo systemctl restart guestbook'
+      - name: Check that the server answers
+        run: curl -s --fail --retry 5 --retry-delay 2 --retry-all-errors https://guestbook.siena.codes/ | grep -q guestbook
+      - name: Check that an entry from another origin is refused
+        run: |
+          status=$(curl -s -o /dev/null -w '%{http_code}' -X POST -H 'content-type: application/json' -H 'origin: https://example.com' -d '{"name":"deploy check","text":"never stored"}' https://guestbook.siena.codes/entries)
+          test "$status" = 403
+      - name: Check that the droplet runs the committed unit
+        env:
+          DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+        run: |
+          unit=$(ssh -i ~/.ssh/deploy "deploy@$DEPLOY_HOST" sh /srv/guestbook/server/deploy/check_unit.sh) || true
+          case "$unit" in
+            current) ;;
+            reload)
+              echo "::error::guestbook.service changed on disk but systemd has not reloaded it. Run the steps in server/deploy/README.md."
+              exit 1 ;;
+            differs)
+              echo "::error::The installed guestbook.service is not the committed one. Install it with the steps in server/deploy/README.md."
+              exit 1 ;;
+            *)
+              echo "::error::Couldn't read the installed or committed guestbook.service."
+              exit 1 ;;
+          esac
+      - name: Check that the droplet has the committed Caddy site and a Caddyfile that loads
+        env:
+          DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+        run: |
+          ssh -i ~/.ssh/deploy "deploy@$DEPLOY_HOST" '
+            site=/etc/caddy/sites/guestbook.caddy
+            if ! cmp -s "$site" /srv/guestbook/server/deploy/guestbook.caddy; then
+              echo "::error::$site is not the committed guestbook.caddy. Install it with the steps in server/deploy/README.md."
+              exit 1
+            fi
+            if ! caddy validate --config /etc/caddy/Caddyfile > /dev/null 2>&1; then
+              echo "::error::/etc/caddy/Caddyfile does not load, so Caddy would not start after a restart, for any site on the droplet."
+              exit 1
+            fi
+          '
+      - name: Check that Caddy refuses a body over the cap
+        run: |
+          status=$(head -c 20000 /dev/zero | curl -s -o /dev/null -w '%{http_code}' -X POST -H 'content-type: application/json' -H 'origin: https://siena.codes' --data-binary @- https://guestbook.siena.codes/entries)
+          if [ "$status" != 413 ]; then
+            echo "::error::A 20KB POST answered $status, not 413. Caddy is not running the committed guestbook.caddy."
+            exit 1
+          fi
